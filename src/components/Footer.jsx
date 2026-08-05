@@ -80,6 +80,15 @@ const Footer = () => {
           </form>
         </div>
       </div>
+      <div className="mt-8 border-t border-gray-700 pt-4">
+        <div className="container mx-auto flex flex-col md:flex-row justify-center">
+          <p>&copy; 2026 Kikuubo Shop All rights reserved.</p>
+          <div>
+            <a href="">Privacy Policy</a>
+            <a href="">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };
