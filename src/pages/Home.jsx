@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Categories } from "../assets/MockData";
 import banner1 from "../assets/images/banner1.png";
 import InfoSection from "../components/InfoSection";
 import CategorySection from "../components/CategorySection";
