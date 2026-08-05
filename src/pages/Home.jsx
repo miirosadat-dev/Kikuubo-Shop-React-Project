@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import banner1 from "../assets/images/banner1.png";
 import InfoSection from "../components/InfoSection";
 import CategorySection from "../components/CategorySection";
 import { setProducts } from "../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Products, Categories } from "../assets/Products";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product);
+  const products = useSelector((state) => state.product.products);
+
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
+
   useEffect(() => {
-    dispatch(setProducts());
+    dispatch(setProducts(Products));
   }, []);
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
@@ -25,8 +33,12 @@ const Home = () => {
             SHOP BY CATEGORIES
           </div>
           <ul className="space-y-4 bg-gray-100 p-3 border border-gray-300">
-            {Categories.map((category, index) => (
-              <li key={index} className="flex items-center text-sm font-medium">
+            {Categories.map((category) => (
+              <li
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className="flex items-center cursor-pointer text-sm font-medium"
+              >
                 <div className="w-2 h-2 border border-red-500 rounded-full mr-2"></div>
                 {category}
               </li>
@@ -62,6 +74,11 @@ const Home = () => {
 
       <div>
         <h2>Top Products</h2>
+        <div>
+          {filteredProducts.slice(0, 5).map((product) => (
+            <div key={product.id}>{product.name}</div>
+          ))}
+        </div>
       </div>
     </div>
   );

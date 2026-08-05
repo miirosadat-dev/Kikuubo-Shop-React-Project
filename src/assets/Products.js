@@ -273,3 +273,8 @@ export const Products = [
     category: "Automotive",
   },
 ];
+
+export const Categories = [
+  "All",
+  ...new Set(Products.map((product) => product.category)),
+];
