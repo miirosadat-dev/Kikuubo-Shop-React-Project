@@ -81,11 +81,18 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 border-t border-gray-700 pt-4">
-        <div className="container mx-auto flex flex-col md:flex-row justify-center">
+        <div
+          className="container mx-auto flex flex-col 
+        md:flex-row justify-between items-center"
+        >
           <p>&copy; 2026 Kikuubo Shop All rights reserved.</p>
-          <div>
-            <a href="">Privacy Policy</a>
-            <a href="">Terms & Conditions</a>
+          <div className="flex spacex-4 mt-4 md:mt-0">
+            <a href="" className="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="" className="hover:underline">
+              Terms & Conditions
+            </a>
           </div>
         </div>
       </div>

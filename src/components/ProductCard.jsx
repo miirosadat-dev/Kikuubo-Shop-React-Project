@@ -1,7 +1,17 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { addToCart } from "../redux/CartSlice";
+import { useDispatch } from "react-redux";
+
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch()
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation()
+    e.preventDefault()
+    dispatch(addToCart(product))
+    alert("Product Added Successfully")
+  }
   return (
     <div
       className="bg-white p-4 shadow rounded relative border
@@ -26,7 +36,7 @@ const ProductCard = ({ product }) => {
       flex items-center justify-center w-8 h-8
       bg-red-600 group text-white text-sm
       rounded-full hover:w-32 hover:bg-red-700
-      transition-transform"
+      transition-transform" onClick={(e) => handleAddToCart(e, product)}
       >
         <span className="group-hover:hidden">+</span>
         <span className="hidden group-hover:block">Add to cart</span>
