@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import emptyCart from "../assets/images/emptycart.png";
 import { FaTrashAlt } from "react-icons/fa";
+import Modal from "../components/Modal";
+import ChangeAddress from "../components/ChangeAddress";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [address, setAddress] = useState({
     name: "Miiro Sadat",
     phone: "+256-787760797",
@@ -101,7 +104,7 @@ const Cart = () => {
                   {/* Body */}
                   <div className="space-y-6 p-7">
                     {/* Items */}
-                    <div className="flex items-center justify-between text-gray-600">
+                    <div className="flex items-center justify-between text-gray-900">
                       <span>Total Items</span>
 
                       <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-900">
@@ -116,7 +119,10 @@ const Cart = () => {
                           Shipping Address
                         </h4>
 
-                        <button className="text-sm font-medium text-black transition hover:text-gray-600">
+                        <button
+                          className="text-md font-medium text-blue-700 transition hover:underline hover:text-yellow-600"
+                          onClick={() => setIsModalOpen(true)}
+                        >
                           Change
                         </button>
                       </div>
@@ -138,15 +144,15 @@ const Cart = () => {
                     {/* Price Breakdown */}
 
                     <div className="space-y-4">
-                      <div className="flex justify-between text-gray-600">
+                      <div className="flex justify-between text-xl font-bold text-gray-900">
                         <span>Subtotal</span>
 
-                        <span className="font-medium">
+                        <span className="font-medium text-sm">
                           UGX {cart.totalPrice.toFixed(2)}
                         </span>
                       </div>
 
-                      <div className="flex justify-between text-gray-600">
+                      <div className="flex justify-between text-gray-900">
                         <span>Shipping</span>
 
                         <span className="text-green-600 font-semibold">
@@ -154,7 +160,7 @@ const Cart = () => {
                         </span>
                       </div>
 
-                      <div className="flex justify-between text-gray-600">
+                      <div className="flex justify-between text-gray-900">
                         <span>Taxes</span>
 
                         <span>Calculated at checkout</span>
@@ -169,21 +175,22 @@ const Cart = () => {
 
                     <div className="flex items-end justify-between">
                       <div>
-                        <p className="text-sm text-gray-500">Total</p>
+                        <p className="text-sm text-gray-800">Total</p>
 
                         <p className="text-xs text-gray-400">
-                          Inclusive of applicable charges
+                          Inclusive of
+                          <br /> applicable charges
                         </p>
                       </div>
 
-                      <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                      <h2 className="lg:text-xl md:text-xl font-bold tracking-tight text-gray-900">
                         UGX {cart.totalPrice.toFixed(2)}
                       </h2>
                     </div>
 
                     {/* Checkout Button */}
 
-                    <button className="group relative w-full overflow-hidden rounded-2xl bg-black py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98]">
+                    <button className="group relative w-full overflow-hidden rounded-2xl bg-orange-600 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98]">
                       Proceed to Checkout
                     </button>
 
@@ -211,6 +218,13 @@ const Cart = () => {
               </div>
             </div>
           </div>
+          <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+            <ChangeAddress
+              address={address}
+              setAddress={setAddress}
+              setIsModalOpen={setIsModalOpen}
+            />
+          </Modal>
         </div>
       ) : (
         <div className="flex justify-center">
