@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import emptyCart from "../assets/images/emptycart.png";
 import { FaTrashAlt } from "react-icons/fa";
 import Modal from "../components/Modal";
 import ChangeAddress from "../components/ChangeAddress";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../redux/CartSlice";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
   const [address, setAddress] = useState({
     name: "Miiro Sadat",
     phone: "+256-787760797",
@@ -51,7 +57,12 @@ const Cart = () => {
 
                         <div className="mt-4 flex items-center">
                           <div className="flex items-center rounded-full border border-gray-300 overflow-hidden">
-                            <button className="w-10 h-10 text-lg font-semibold hover:bg-gray-100 transition">
+                            <button
+                              className="w-10 h-10 text-lg font-semibold hover:bg-gray-100 transition"
+                              onClick={() =>
+                                dispatch(decreaseQuantity(product.id))
+                              }
+                            >
                               -
                             </button>
 
@@ -59,7 +70,12 @@ const Cart = () => {
                               {product.quantity}
                             </div>
 
-                            <button className="w-10 h-10 text-lg font-semibold hover:bg-gray-100 transition">
+                            <button
+                              className="w-10 h-10 text-lg font-semibold hover:bg-gray-100 transition"
+                              onClick={() =>
+                                dispatch(increaseQuantity(product.id))
+                              }
+                            >
                               +
                             </button>
                           </div>
@@ -76,7 +92,11 @@ const Cart = () => {
                         </p>
                       </div>
 
-                      <button className="flex h-11 w-11 items-center justify-center rounded-full border border-red-100 bg-red-50 text-red-500 transition-all duration-300 hover:scale-110 hover:bg-red-500 hover:text-white">
+                      {/* Remove button */}
+                      <button
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-red-100 bg-red-50 text-red-500 transition-all duration-300 hover:scale-110 hover:bg-red-500 hover:text-white"
+                        onClick={() => dispatch(removeFromCart(product.id))}
+                      >
                         <FaTrashAlt size={15} />
                       </button>
                     </div>
