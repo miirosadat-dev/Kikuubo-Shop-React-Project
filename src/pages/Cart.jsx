@@ -9,9 +9,11 @@ import {
   increaseQuantity,
   removeFromCart,
 } from "../redux/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const [address, setAddress] = useState({
@@ -210,7 +212,10 @@ const Cart = () => {
 
                     {/* Checkout Button */}
 
-                    <button className="group relative w-full overflow-hidden rounded-2xl bg-orange-600 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98]">
+                    <button
+                      className="group relative w-full overflow-hidden rounded-2xl bg-orange-600 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98]"
+                      onClick={() => navigate("/checkout")}
+                    >
                       Proceed to Checkout
                     </button>
 
