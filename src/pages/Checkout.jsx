@@ -2,27 +2,18 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const [shippingInfo, setShippingInfo] = useState({
-    fullName: "Miiro Sadat",
-    phone: "+256787760797",
-    address: "Lubiri Ring Road, Mengo",
-  });
+  const shippingInfo = useSelector((state) => state.cart.shippingAddress);
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const cart = useSelector((state) => state.cart);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setShippingInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
   };
 
   const handlePlaceOrder = async () => {
     if (
-      !shippingInfo.fullName.trim() ||
+      !shippingInfo.name.trim() ||
       !shippingInfo.phone.trim() ||
       !shippingInfo.address.trim()
     ) {
@@ -83,9 +74,12 @@ const Checkout = () => {
                   Shipping Information
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-500">
-                  We'll use these details to deliver your order.
-                </p>
+                <div className="p-1 lg:mt-8 mt-4 border-t-2 border-orange-700 rounded-lg bg-amber-100 font-semibold">
+                  <p className="mt-1 text-sm text-gray-500">
+                    NOTE: You can change or update this information on Cart
+                    Page.
+                  </p>
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -99,9 +93,9 @@ const Checkout = () => {
                   <input
                     type="text"
                     name="fullName"
-                    value={shippingInfo.fullName}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300 focus:border-black focus:bg-white focus:ring-4 focus:ring-gray-200"
+                    value={shippingInfo.name}
+                    readOnly
+                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300  focus:bg-gray-100 focus:ring-2 focus:ring-gray-200"
                   />
                 </div>
 
@@ -116,8 +110,8 @@ const Checkout = () => {
                     type="tel"
                     name="phone"
                     value={shippingInfo.phone}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300 focus:border-black focus:bg-white focus:ring-4 focus:ring-gray-200"
+                    readOnly
+                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300  focus:bg-gray-100 focus:ring-2 focus:ring-gray-200"
                   />
                 </div>
 
@@ -132,8 +126,8 @@ const Checkout = () => {
                     rows={4}
                     name="address"
                     value={shippingInfo.address}
-                    onChange={handleChange}
-                    className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300 focus:border-black focus:bg-white focus:ring-4 focus:ring-gray-200"
+                    readOnly
+                    className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition-all duration-300  focus:bg-gray-100 focus:ring-2 focus:ring-gray-200"
                   />
                 </div>
               </div>
@@ -186,7 +180,7 @@ const Checkout = () => {
 
                     <div className="mt-4 space-y-1">
                       <p className="font-semibold text-gray-900">
-                        {shippingInfo.fullName}
+                        {shippingInfo.name}
                       </p>
 
                       <p className="text-sm text-gray-600">

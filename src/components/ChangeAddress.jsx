@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { updateShippingAddress } from "../redux/CartSlice";
 
-const ChangeAddress = ({ address, setAddress, setIsModalOpen }) => {
-  const [newAddress, setNewAddress] = useState("");
+const ChangeAddress = ({ address, dispatch, setIsModalOpen }) => {
+  const [newAddress, setNewAddress] = useState({
+    name: address.name,
+    phone: address.phone,
+    address: address.address,
+  });
+
   const onClose = () => {
-    setAddress(newAddress);
+    dispatch(updateShippingAddress(newAddress));
     setIsModalOpen(false);
   };
   return (

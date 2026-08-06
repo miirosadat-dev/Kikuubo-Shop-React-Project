@@ -15,12 +15,9 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const address = useSelector((state) => state.cart.shippingAddress);
   const dispatch = useDispatch();
-  const [address, setAddress] = useState({
-    name: "Miiro Sadat",
-    phone: "+256-787760797",
-    address: "Lubiri Ring Road, Mengo",
-  });
+
   return (
     <div className="container mx-auto min-h-screen py-12 px-4 lg:px-16 xl:px-24">
       {cart.products.length > 0 ? (
@@ -246,7 +243,7 @@ const Cart = () => {
           <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
             <ChangeAddress
               address={address}
-              setAddress={setAddress}
+              dispatch={dispatch}
               setIsModalOpen={setIsModalOpen}
             />
           </Modal>

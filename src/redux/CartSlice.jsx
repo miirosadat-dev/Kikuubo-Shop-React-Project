@@ -4,6 +4,12 @@ const initialState = {
   products: [],
   totalQuantity: 0,
   totalPrice: 0,
+
+  shippingAddress: {
+    name: "",
+    phone: "",
+    address: "",
+  },
 };
 
 const CartSlice = createSlice({
@@ -63,9 +69,18 @@ const CartSlice = createSlice({
         }
       }
     },
+
+    updateShippingAddress(state, action) {
+      state.shippingAddress = action.payload;
+    },
   },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } =
-  CartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+  updateShippingAddress,
+} = CartSlice.actions;
 export default CartSlice.reducer;
