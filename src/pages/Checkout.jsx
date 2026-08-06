@@ -12,47 +12,6 @@ const Checkout = () => {
   const cart = useSelector((state) => state.cart);
 
   const handleChange = (e) => {
-    const handlePlaceOrder = async () => {
-      if (
-        !shippingInfo.fullName.trim() ||
-        !shippingInfo.phone.trim() ||
-        !shippingInfo.address.trim()
-      ) {
-        alert("Please complete all shipping information.");
-        return;
-      }
-
-      if (cart.products.length === 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-
-      setIsSubmitting(true);
-
-      try {
-        // This is where your Spring Boot API call will go later.
-
-        const order = {
-          customer: shippingInfo,
-          paymentMethod,
-          products: cart.products,
-          totalItems: cart.totalQuantity,
-          totalPrice: cart.totalPrice,
-        };
-
-        console.log(order);
-
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        alert("Order placed successfully!");
-      } catch (error) {
-        console.error(error);
-        alert("Something went wrong.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-
     const { name, value } = e.target;
 
     setShippingInfo((prev) => ({
@@ -61,6 +20,44 @@ const Checkout = () => {
     }));
   };
 
+  const handlePlaceOrder = async () => {
+    if (
+      !shippingInfo.fullName.trim() ||
+      !shippingInfo.phone.trim() ||
+      !shippingInfo.address.trim()
+    ) {
+      alert("Please complete all shipping information.");
+      return;
+    }
+
+    if (cart.products.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const order = {
+        customer: shippingInfo,
+        paymentMethod,
+        products: cart.products,
+        totalItems: cart.totalQuantity,
+        totalPrice: cart.totalPrice,
+      };
+
+      console.log(order);
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      alert("Order placed successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-10 lg:px-16 xl:px-24">
@@ -291,9 +288,9 @@ const Checkout = () => {
                   <button
                     onClick={handlePlaceOrder}
                     disabled={isSubmitting}
-                    className="w-full rounded-2xl bg-black py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="w-full rounded-2xl bg-orange-600 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {isSubmitting ? "Placing Order..." : "Place Order"}
+                    {isSubmitting ? "Order Placed" : "Place Order"}
                   </button>
 
                   {/* Security */}
