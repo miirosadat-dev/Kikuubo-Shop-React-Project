@@ -36,6 +36,12 @@ const OrderSuccess = () => {
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900">Thank You!</h1>
+          <p className="mt-3 text-gray-500">
+            Order No.
+            <span className="ml-2 font-semibold text-gray-900">
+              {order.orderNumber}
+            </span>
+          </p>
 
           <p className="mt-3 text-lg text-gray-500">
             Your order has been placed successfully.

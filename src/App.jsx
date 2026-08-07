@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import { setProducts } from "./redux/productSlice";
 import { Products } from "./assets/Products";
 import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
       </Routes>
 
       <Footer />

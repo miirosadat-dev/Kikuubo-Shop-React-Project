@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveOrder } from "../redux/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const shippingInfo = useSelector((state) => state.cart.shippingAddress);
   const [paymentMethod, setPaymentMethod] = useState("cod");
@@ -33,16 +35,25 @@ const Checkout = () => {
     try {
       dispatch(
         saveOrder({
+          orderNumber: "ORD-" + Date.now().toString().slice(-8),
+
           customer: shippingInfo,
+
           paymentMethod,
+
           products: cart.products,
+
           totalItems: cart.totalQuantity,
+
           totalPrice: cart.totalPrice,
+
           orderedAt: new Date().toISOString(),
         }),
       );
 
       await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      navigate("/order-success");
 
       alert("Order placed successfully!");
     } catch (error) {
