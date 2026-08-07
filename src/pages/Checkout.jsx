@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { saveOrder } from "../redux/CartSlice";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const shippingInfo = useSelector((state) => state.cart.shippingAddress);
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,15 +31,16 @@ const Checkout = () => {
     setIsSubmitting(true);
 
     try {
-      const order = {
-        customer: shippingInfo,
-        paymentMethod,
-        products: cart.products,
-        totalItems: cart.totalQuantity,
-        totalPrice: cart.totalPrice,
-      };
-
-      console.log(order);
+      dispatch(
+        saveOrder({
+          customer: shippingInfo,
+          paymentMethod,
+          products: cart.products,
+          totalItems: cart.totalQuantity,
+          totalPrice: cart.totalPrice,
+          orderedAt: new Date().toISOString(),
+        }),
+      );
 
       await new Promise((resolve) => setTimeout(resolve, 1500));
 

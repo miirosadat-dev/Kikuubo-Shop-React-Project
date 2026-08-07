@@ -10,6 +10,8 @@ const initialState = {
     phone: "",
     address: "",
   },
+
+  currentOrder: null,
 };
 
 const CartSlice = createSlice({
@@ -73,6 +75,10 @@ const CartSlice = createSlice({
     updateShippingAddress(state, action) {
       state.shippingAddress = action.payload;
     },
+
+    saveOrder(state, action) {
+      state.currentOrder = action.payload;
+    },
   },
 });
 
@@ -82,5 +88,6 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   updateShippingAddress,
+  saveOrder,
 } = CartSlice.actions;
 export default CartSlice.reducer;
