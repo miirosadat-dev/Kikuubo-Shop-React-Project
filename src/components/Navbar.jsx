@@ -11,12 +11,12 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const products = useSelector((state) => state.cart.products);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     dispatch(setSearchTerm(search));
     navigate("/filter-data");
   };
@@ -53,7 +53,10 @@ const Navbar = () => {
               className="w-full border border-gray-300 rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
               onChange={(e) => setSearch(e.target.value)}
             />
-            <FaSearch className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500" />
+            <FaSearch
+              className="absolute cursor-pointer top-1/2 right-3 -translate-y-1/2 text-gray-500"
+              onClick={handleSearch}
+            />
           </form>
         </div>
 

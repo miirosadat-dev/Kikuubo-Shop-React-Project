@@ -1,9 +1,11 @@
-import React from 'react'
+import { useSelector } from "react-redux";
 
 const FilterData = () => {
-  return (
-    <div>FilterData</div>
-  )
-}
+  const product = useSelector((state) => state.product);
 
-export default FilterData
+  console.log(product);
+
+  return <h1>Check the console</h1>;
+};
+
+export default FilterData;

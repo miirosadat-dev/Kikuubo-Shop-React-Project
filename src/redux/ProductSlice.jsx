@@ -12,6 +12,7 @@ const productSlice = createSlice({
   reducers: {
     setProducts(state, action) {
       state.products = action.payload;
+      state.filteredData = action.payload;
     },
 
     setSearchTerm(state, action) {
