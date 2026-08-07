@@ -11,6 +11,7 @@ import { Products } from "./assets/Products";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import ScrollToTop from "./components/ScrollToTop";
+import FilterData from "./pages/FilterData";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/filter-data" element={<FilterData />} />
       </Routes>
 
       <Footer />
