@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Register from "./Register";
+import Modal from "./Modal";
+import Login from "./Login";
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const products = useSelector((state) => state.cart.products);
+
+  const openSignUp = () => {
+    setIsLogin(false);
+    setIsModalOpen(true);
+  };
+
+  const openLogin = () => {
+    setIsLogin(true);
+    setIsModalOpen(true);
+  };
+
   return (
     <nav className="bg-gray-50">
       <div className="fixed top-0 left-0 right-0 z-50 w-full flex items-center gap-4 px-4 md:px-8 lg:px-10 xl:px-16 py-4 bg-gray-50 border-b border-gray-300">
@@ -48,11 +64,17 @@ const Navbar = () => {
             )}
           </Link>
 
-          <button className="hidden md:block whitespace-nowrap font-medium text-gray-700 hover:text-red-500 transition-colors">
+          <button
+            className="hidden md:block whitespace-nowrap font-medium text-gray-700 hover:text-red-500 transition-colors"
+            onClick={() => setIsModalOpen(true)}
+          >
             Login | Register
           </button>
 
-          <button className="md:hidden text-xl text-gray-700 hover:text-red-500">
+          <button
+            className="md:hidden text-xl text-gray-700 hover:text-red-500"
+            onClick={() => setIsModalOpen(true)}
+          >
             <FaUser />
           </button>
         </div>
@@ -90,6 +112,13 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+        {isLogin ? (
+          <Login openSignUp={openSignUp} />
+        ) : (
+          <Register openLogin={openLogin} />
+        )}
+      </Modal>
     </nav>
   );
 };
