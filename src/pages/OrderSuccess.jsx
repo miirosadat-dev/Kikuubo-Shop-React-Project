@@ -99,7 +99,9 @@ const OrderSuccess = () => {
                     />
 
                     <div>
-                      <h4 className="font-semibold">{product.name}</h4>
+                      <h4 className="font-semibold lg:text-lg text-sm ml-2">
+                        {product.name}
+                      </h4>
 
                       <p className="text-sm text-gray-500">
                         Qty: {product.quantity}
@@ -107,7 +109,7 @@ const OrderSuccess = () => {
                     </div>
                   </div>
 
-                  <p className="font-bold">
+                  <p className="text-sm ml-4">
                     UGX {(product.quantity * product.price).toFixed(2)}
                   </p>
                 </div>
@@ -123,7 +125,7 @@ const OrderSuccess = () => {
                 <span className="font-semibold">{order.totalItems}</span>
               </div>
 
-              <div className="flex justify-between text-2xl font-bold">
+              <div className="flex justify-between text-2xl font-semibold">
                 <span>Total</span>
 
                 <span>UGX {order.totalPrice.toFixed(2)}</span>
@@ -135,13 +137,13 @@ const OrderSuccess = () => {
         {/* Buttons */}
 
         <div className="mt-10 flex flex-col gap-4 md:flex-row">
-          <button className="flex-1 rounded-2xl bg-black py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800">
+          <button className="flex-1 rounded-2xl bg-orange-600 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800">
             Track Order
           </button>
 
           <Link
             to="/"
-            className="flex-1 rounded-2xl border border-gray-300 py-4 text-center font-semibold transition-all duration-300 hover:border-black hover:bg-gray-100"
+            className="flex-1 rounded-2xl border border-gray-300 py-4 text-center font-semibold transition-all duration-300 hover:border-orange-500 hover:bg-gray-100"
           >
             Continue Shopping
           </Link>
