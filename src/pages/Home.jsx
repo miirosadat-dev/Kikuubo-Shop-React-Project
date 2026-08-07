@@ -44,8 +44,12 @@ const Home = () => {
             </ul>
           </div>
 
-          <div className="w-full md:w-9/12 mt-8 md:mt-0 h-100 relative">
-            <img src={banner1} alt="hero image" />
+          <div className="w-full md:w-9/12 mt-8 md:mt-0 mb-5 relative overflow-hidden">
+            <img
+              src={banner1}
+              alt="hero image"
+              className="w-full h-auto object-cover"
+            />
             <div className="absolute lg:top-15 md:top-10 top-1 lg:left-10 md:left-8 left-3">
               <p className="text-gray-600 lg:mb-4 mb-1 text-sm">
                 Sadat | Kikuubo Shop

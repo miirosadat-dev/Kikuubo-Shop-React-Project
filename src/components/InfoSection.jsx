@@ -32,7 +32,7 @@ const InfoSection = () => {
     },
   ];
   return (
-    <div className="bg-white pb-8 lg:mb-5 pt-12">
+    <div className="bg-white pb-8 lg:mb-5">
       <div className="container mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
         {infoItems.map((item, index) => (
           <div

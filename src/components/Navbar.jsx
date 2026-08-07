@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const products = useSelector((state) => state.cart.products);
   return (
-    <nav className="bg-gray-50 shadow-md">
-      <div className="w-full flex items-center gap-4 px-4 md:px-8 lg:px-10 xl:px-16 py-4">
+    <nav className="bg-gray-50">
+      <div className="fixed top-0 left-0 right-0 z-50 w-full flex items-center gap-4 px-4 md:px-8 lg:px-10 xl:px-16 py-4 bg-gray-50 border-b border-gray-300">
         {/* Logo */}
         <div className="flex-shrink-0">
           <Link
@@ -59,7 +59,7 @@ const Navbar = () => {
       </div>
 
       {/*These are main menu */}
-      <div className="border-t border-gray-200 bg-gray-50">
+      <div className="border-t border-gray-200 bg-gray-50 mt-18 shadow-md border-b border-gray-300">
         <div className="flex items-center justify-center gap-4 md:gap-8 overflow-x-auto whitespace-nowrap px-4 py-3 text-sm font-semibold text-gray-700">
           <Link
             to="/"
