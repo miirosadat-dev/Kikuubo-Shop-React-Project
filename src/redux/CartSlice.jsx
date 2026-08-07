@@ -6,9 +6,9 @@ const initialState = {
   totalPrice: 0,
 
   shippingAddress: {
-    name: "",
-    phone: "",
-    address: "",
+    name: "Miiro Sadat",
+    phone: "+256-700000000",
+    address: "Lubiri Ring Road, Mengo",
   },
 
   currentOrder: null,

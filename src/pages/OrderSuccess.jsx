@@ -26,7 +26,7 @@ const OrderSuccess = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto max-w-5xl px-4">
         {/* Success */}
 
@@ -50,7 +50,7 @@ const OrderSuccess = () => {
 
         {/* Summary Card */}
 
-        <div className="rounded-3xl border border-gray-200 bg-white shadow-xl">
+        <div className="rounded-3xl border border-gray-200 bg-gray-50 shadow-xl">
           {/* Header */}
 
           <div className="border-b border-gray-100 px-8 py-6">
@@ -89,7 +89,7 @@ const OrderSuccess = () => {
               {order.products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex items-center justify-between rounded-2xl bg-gray-50 p-5"
+                  className="flex items-center justify-between rounded-2xl bg-white p-5"
                 >
                   <div className="flex items-center gap-4">
                     <img

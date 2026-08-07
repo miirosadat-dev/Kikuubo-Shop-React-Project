@@ -10,6 +10,7 @@ import { setProducts } from "./redux/productSlice";
 import { Products } from "./assets/Products";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<Home />} />
