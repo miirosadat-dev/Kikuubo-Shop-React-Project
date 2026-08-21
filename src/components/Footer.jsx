@@ -20,7 +20,7 @@ const Footer = () => {
             Kikuubo Shop
           </h3>
           <p className="mt-4">
-            Your one-step fot all your needs. Shop with use and experience the
+            Your one-step feet all your needs. Shop with use and experience the
             best online shopping experiences.
           </p>
         </div>
